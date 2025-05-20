@@ -56,7 +56,9 @@ loggingWrapper := func(next http.Handler) http.Handler {
 - Origin: `http://localhost:3000`
 - Host (backend server): `localhost:3000`
 
-`gorilla/csrf` expects the Origin or Referer header to match the Host header. The mismatch caused the CSRF middleware to block the request. Also i Think it does a strict string matching of Origin and Host so i was getting the Error
+`gorilla/csrf`: When your CSRF middleware checks the Origin header, it looks at the host part of that Origin URL and compares it against your trusted origins list.
+    Origin: http://localhost:3000
+    Origin host: localhost:3000 so this should be in the trusted origin list
 
 ---
 
